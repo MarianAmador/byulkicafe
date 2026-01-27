@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Byulki Café</title>
+</head>
+<body>
+
+<h1 id="welcomeMessage"></h1>
+<button onclick="logout()">logout</button>
+
+<h2>⭐ Favoritos</h2>
+<section id="favoritesSection">
+    <p>No hay favoritos aun</p>
+</section>
+
+
+<h2>Menú de bebidas</h2>
+<section>
+    <img src="imagenes/affogato.png" alt="Affogato" width="300">
+    <h2>Affogato</h2>
+    <p>Delicioso postre italiano que combina helado de vainilla con un espresso caliente.</p>
+    <p>Precio: $4.50</p>
+    <button onclick="toggleFav(this, 'affogato')">⭐</button>
+</section>
+
+<section>
+    <img src="imagenes/americano.png" alt="Café americano" width="300">
+    <h2>Café Americano</h2>
+    <p>Clásico café preparado con espresso y agua caliente.</p>
+    <p>Precio: $3.00</p>
+    <button onclick="toggleFav(this, 'americano')">⭐</button>
+</section>
+
+<section>
+    <img src="imagenes/cappuccino.png" alt="Cappuccino" width="300">
+    <h2>Cappuccino</h2>
+    <p>Café espresso con leche vaporizada y espuma de leche.</p>
+    <p>Precio: $3.50</p>
+    <button onclick="toggleFav(this, 'cappuccino')">⭐</button>
+</section>
+
+<section>
+    <img src="imagenes/caramelo.png" alt="frappe caramelo" width="300">
+    <h2>Frappe Caramelo</h2>
+    <p>Frappé con sabor a caramelo y leche.</p>
+    <p>Precio: $4.00</p>
+    <button onclick="toggleFav(this, 'caramelo')">⭐</button>
+</section>
+
+
+<section>
+    <img src="imagenes/espresso.png" alt="Espresso" width="300">
+    <h2>Espresso</h2>
+    <p>Café fuerte y concentrado preparado con agua caliente.</p>
+    <p>Precio: $2.50</p>
+    <button onclick="toggleFav(this, 'espresso')">⭐</button>
+</section>
+
+<section>
+    <img src="imagenes/icedlatte.png" alt="Iced Latte" width="300">
+    <h2>Iced Latte</h2>
+    <p>Latte helado con espresso y leche.</p>
+    <p>Precio: $4.50</p>
+    <button onclick="toggleFav(this, 'icedlatte')">⭐</button>
+</section>
+
+<section>
+    <img src="imagenes/latte.png" alt="Latte" width="300">
+    <h2>Latte</h2>
+    <p>Café espresso con leche vaporizada.</p>
+    <p>Precio: $3.50</p>
+    <button onclick="toggleFav(this, 'latte')">⭐</button>
+</section>
+
+
+<section>
+    <img src="imagenes/mocca.png" alt="Mocca" width="300">
+    <h2>Mocca</h2>
+    <p>Café espresso con leche vaporizada y chocolate.</p>
+    <p>Precio: $4.00</p>
+    <button onclick="toggleFav(this, 'mocca')">⭐</button>
+</section>
+
+
+<section>
+    <img src="imagenes/tarolatte.png" alt="Taro Latte" width="300">
+    <h2>Taro Latte</h2>
+    <p>Café espresso con leche vaporizada y sabor a taro.</p>
+    <p>Precio: $4.00</p>
+    <button onclick="toggleFav(this, 'tarolatte')">⭐</button>
+</section>
+
+
+<section>
+    <img src="imagenes/vienes.png" alt="Vienes" width="300">
+    <h2>Vienes</h2>
+    <p>Café espresso con leche vaporizada.</p>
+    <p>Precio: $3.50</p>
+    <button onclick="toggleFav(this, 'vienes')">⭐</button>
+</section>
+
+
+<script>
+    if (localStorage.getItem('loggedIn') !== "true") {
+        window.location.href = "index.html";
+    }
+
+    const user = localStorage.getItem("username");
+    document.getElementById("welcomeMessage").textContent =
+        "¡Hola, " + user + "! Bienvenido a Byulki Café.";
+
+    function logout() {
+        localStorage.removeItem("loggedIn");
+        window.location.href = "index.html";
+    }
+
+    function toggleFav(button, item) {
+        let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+
+        if (favorites.includes(item)) {
+            favorites = favorites.filter(fav => fav !== item);
+            button.textContent = '⭐';
+        } else {
+            favorites.push(item);
+            button.textContent = '🌟';
+        }
+
+        localStorage.setItem('favorites', JSON.stringify(favorites));
+    }
+
+
+    function loadFavorites() {
+        const favs= JSON.parse(localStorage.getItem('favorites')) || [];
+        const favSection = document.getElementById('favoritesSection');
+    }
+
+
+
+
+</script>
+
+</body>
+</html>
