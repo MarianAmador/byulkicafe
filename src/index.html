@@ -6,16 +6,28 @@
     <title>Inicio de Sesión</title>
     <link rel="stylesheet" href="output.css">
 </head>
-<body>
+<body class="bg-white">
 
-    <h1 class="bg-blue-500 text-white p-4 rounded-lg text-lg">Byulki Café</h1>
-    <input id="user" placeholder="Usuario">
-    <input id="pass" type="password" placeholder="Contraseña">
-    <button onclick="login()" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Iniciar sesión</button>
+<header class="bg-[#6d3c11] h-20 flex items-center justify-center text-white text-xl">
+    <div class="flex items-center gap-3">
+        <img src="imagenes/byulkilogo.png" alt="Logo Byulki Café" class="h-10 w-10 object-contain">
+        <span class="font-semibold text-lg">Byulki Café</span>
+    </div>
+</header>
 
+<!-- Login simple -->
+<div class="flex flex-col items-center mt-20">
+    <input id="user" placeholder="Usuario"
+           class="mb-3 px-2 py-1 border">
 
+    <input id="pass" type="password" placeholder="Contraseña"
+           class="mb-4 px-2 py-1 border">
 
-
+    <button onclick="login()"
+        class="bg-[#ffedba] text-[#6d3c11] px-3 py-1 rounded">
+        Iniciar sesión
+    </button>
+</div>
 
 <script src="script.js"></script>
 </body>
