@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio de Sesión</title>
+    <link rel="stylesheet" href="output.css">
+</head>
+<body class="bg-white">
+
+<header class="bg-[#6d3c11] h-20 flex items-center justify-center text-white text-xl">
+    <div class="flex items-center gap-3">
+        <img src="imagenes/byulkilogo.png" alt="Logo Byulki Café" class="h-10 w-10 object-contain">
+        <span class="font-semibold text-lg">Byulki Café</span>
+    </div>
+</header>
+
+<!-- Login simple -->
+<div class="flex flex-col items-center mt-20">
+    <input id="user" placeholder="Usuario"
+           class="mb-3 px-2 py-1 border">
+
+    <input id="pass" type="password" placeholder="Contraseña"
+           class="mb-4 px-2 py-1 border">
+
+    <button onclick="login()"
+        class="bg-[#ffedba] text-[#6d3c11] px-3 py-1 rounded">
+        Iniciar sesión
+    </button>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
