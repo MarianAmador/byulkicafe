@@ -16,7 +16,7 @@
     <h1 id="welcomeMessage" class="text-xl font-medium text-center flex-1"></h1>
 
 
-<button onclick="logout()" class="bg-[#ffedba] text-[#6d3c11] px-4 py-2 rounded-lg 
+<button onclick="logout()" class="bg-white text-[#6d3c11] px-4 py-2 rounded-lg 
            font-medium hover:bg-gray-100 transition" >Cerrar sesión</button>
 
 </header>
@@ -25,23 +25,57 @@
 <h2 class="col-span-2 text-xl font-bold text-center"> ⭐ Favoritos</h2>
 
 
+<button id="clearFavBtn"
+hidden
+onclick="clearFavorites()"
+class="mx-auto mb-4 bg-[#6d3c11] text-white px-4 py-2 rounded-lg
+       hover:bg-[#8a4b16] transition font-medium">
+Quitar todos 🌟
+</button>
+
+
+
 
 <section id="favoritosSection"
   class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 place-items-center text-center">
 
 <p class="text-center col-span-full">No hay favoritos aún</p>
 
+
 </section>
 
 
+
+
 <hr class="my-8 border-t-2 border-[#6d3c11] opacity-50">
+
+<div class="flex justify-start my-6 px-6">
+  <div class="bg-[#f5e6d3] p-4 rounded-xl shadow-md">
+    <select
+      onchange="ordenar(this.value)"
+      class="bg-white border-2 border-[#6d3c11] text-[#6d3c11]
+             px-4 py-2 rounded-lg font-medium
+             focus:outline-none focus:ring-2 focus:ring-[#6d3c11]
+             hover:bg-[#6d3c11] hover:text-white
+             transition cursor-pointer"
+    >
+      <option value="">Ordenar por</option>
+      <option value="popuAsc">Popularidad: más a menos</option>
+      <option value="popuDesc">Popularidad: menos a más</option>
+      <option value="precioAsc">Precio: Bajo a Alto</option>
+      <option value="precioDesc">Precio: Alto a Bajo</option>
+      <option value="nombreAsc">Nombre: A-Z</option>
+      <option value="nombreDesc">Nombre: Z-A</option>
+    </select>
+  </div>
+</div>
 
 
 <h2 class="col-span-2 text-xl font-bold text-center">☕ Menú de bebidas</h2>
 
 <main class="grid grid-cols-2">
 
-<section class="text-center">
+<section class="text-center" data-popular="9">
     <img src="imagenes/affogato.png" alt="Affogato" width="300" class="mx-auto">
     <h2 class="font-bold text-center mt-2">Affogato</h2>
     <p>Delicioso postre italiano que combina helado de vainilla con un espresso caliente.</p>
@@ -50,7 +84,7 @@
 
 </section>
 
-<section class="text-center">
+<section class="text-center" data-popular="1">
     <img src="imagenes/americano.png" alt="Café americano" width="300" class="mx-auto">
   <h2 class="font-bold text-center mt-2">Café Americano</h2>
     <p>Clásico café preparado con espresso y agua caliente.</p>
@@ -58,7 +92,7 @@
     <button onclick="toggleFav(this, 'americano', 'imagenes/americano.png')">⭐</button>
 </section>
 
-<section class="text-center">
+<section class="text-center" data-popular="2">
     <img src="imagenes/cappuccino.png" alt="Cappuccino" width="300" class="mx-auto">
     <h2 class="font-bold text-center mt-2">Cappuccino</h2>
     <p>Café espresso con leche vaporizada y espuma de leche.</p>
@@ -66,7 +100,7 @@
     <button onclick="toggleFav(this, 'cappuccino', 'imagenes/cappuccino.png')">⭐</button>
 </section>
 
-<section class="text-center">
+<section class="text-center" data-popular="8">
     <img src="imagenes/caramelo.png" alt="frappe caramelo" width="300" class="mx-auto">
     <h2 class="font-bold text-center mt-2">Frappe Caramelo</h2>
     <p>Frappé con sabor a caramelo y leche.</p>
@@ -75,7 +109,7 @@
 </section>
 
 
-<section class="text-center">
+<section class="text-center" data-popular="3">
     <img src="imagenes/espresso.png" alt="Espresso" width="300" class="mx-auto">
     <h2 class="font-bold text-center mt-2">Espresso</h2>
     <p>Café fuerte y concentrado preparado con agua caliente.</p>
@@ -83,7 +117,7 @@
     <button onclick="toggleFav(this, 'espresso', 'imagenes/espresso.png')">⭐</button>
 </section>
 
-<section class="text-center">
+<section class="text-center" data-popular="10">
     <img src="imagenes/icedlatte.png" alt="Iced Latte" width="300" class="mx-auto">
     <h2 class="font-bold text-center mt-2">Iced Latte</h2>
     <p>Latte helado con espresso y leche.</p>
@@ -91,7 +125,7 @@
     <button onclick="toggleFav(this, 'icedlatte', 'imagenes/icedlatte.png')">⭐</button>
 </section>
 
-<section class="text-center">
+<section class="text-center" data-popular="5">
     <img src="imagenes/latte.png" alt="Latte" width="300" class="mx-auto">
     <h2 class="font-bold text-center mt-2">Latte</h2>
     <p>Café espresso con leche vaporizada.</p>
@@ -100,7 +134,7 @@
 </section>
 
 
-<section class="text-center">
+<section class="text-center" data-popular="6">
     <img src="imagenes/mocca.png" alt="Mocca" width="300" class="mx-auto">
     <h2 class="font-bold text-center mt-2">Mocca</h2>
     <p>Café espresso con leche vaporizada y chocolate.</p>
@@ -109,7 +143,7 @@
 </section>
 
 
-<section class="text-center">
+<section class="text-center" data-popular="7">
     <img src="imagenes/tarolatte.png" alt="Taro Latte" width="300" class="mx-auto">
     <h2 class="font-bold text-center mt-2">Taro Latte</h2>
     <p>Café espresso con leche vaporizada y sabor a taro.</p>
@@ -118,7 +152,7 @@
 </section>
 
 
-<section class="text-center">
+<section class="text-center" data-popular="4">
     <img src="imagenes/vienes.png" alt="Vienes" width="300" class="mx-auto">
     <h2 class="font-bold text-center mt-2">Vienes</h2>
     <p>Café espresso con leche vaporizada.</p>
@@ -127,76 +161,7 @@
 </section>
 </main>
 
-<script>
-if (localStorage.getItem('loggedIn') !== "true") {
-    window.location.href = "index.html";
-}
 
-const user = localStorage.getItem("username");
-document.getElementById("welcomeMessage").textContent =
-    "¡Bienvenida  " + user + "!";
-
-function logout() {
-    localStorage.removeItem("loggedIn");
-    window.location.href = "index.html";
-}
-
-function toggleFav(button, name, img) {
-    let favs = JSON.parse(localStorage.getItem('favorites')) || [];
-
-    const index = favs.findIndex(f => f.name === name);
-
-    if (index !== -1) {
-        favs.splice(index, 1);
-        button.textContent = '⭐';
-    } else {
-        favs.push({ name, img });
-        button.textContent = '🌟';
-    }
-
-    localStorage.setItem('favorites', JSON.stringify(favs));
-    loadFavorites();
-}
-
-function loadFavorites() {
-    const favs = JSON.parse(localStorage.getItem('favorites')) || [];
-    const favSection = document.getElementById('favoritosSection');
-    const buttons = document.querySelectorAll("button");
-
-    favSection.innerHTML = '';
-
-if (favs.length === 0) {
-    favSection.innerHTML = '<p class="text-center col-span-full font-semibold">No hay favoritos aún</p>';
-    return;
-}
-
-
-    favs.forEach(item => {
-        const section = document.createElement('section');
-
-        const img = document.createElement('img');
-        img.src = item.img;
-        img.width = 150;
-
-        const p = document.createElement('p');
-        p.textContent = item.name;
-        p.className = "font-bold text-center mt-2";
-
-        section.appendChild(img);
-        section.appendChild(p);
-        favSection.appendChild(section);
-    });
-
-    buttons.forEach(btn => {
-        const match = btn.getAttribute("onclick")?.match(/'([^']+)'/);
-        if (match && favs.some(f => f.name === match[1])) {
-            btn.textContent = '🌟';
-        }
-    });
-}
-
-loadFavorites();
-</script>
 
 <footer class="bg-[#6d3c11] h-20 flex items-center justify-center text-white text-xl">
 <div class="flex items-center gap-3">
@@ -210,6 +175,6 @@ loadFavorites();
            font-medium hover:bg-gray-100 transition" >Cerrar sesión</button>
 </footer>
 
-
+<script src="cafefavs.js"></script>
 </body>
 </html>
